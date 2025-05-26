@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RealEstateApp</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-5">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index">
+            <img src="{% static 'logo.png' %}" alt="" style="height: 50px">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-dark">Contact us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid row m-5 align-items-center">
+    <div class="col-lg-6">
+        <h1 class="display-4">Architecture</h1>
+        <h3 class="text-muted">Bureau</h3>
+    </div>
+    <div class="col-lg-6">
+        <img src="{% static 'stone1 (1).jpg' %}" alt="">
+    </div>
+</div>
+
+<div class="container-fluid row m-5 align-items-center">
+    <div class="col-lg-6">
+        <img src="{% static 'house4.jpg' %}" alt="">
+    </div>
+    <div class="col-lg-6 d-flex">
+        <p class="text-muted w-75">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias autem consequatur
+            expedita impedit inventore ipsam laborum maiores minima minus natus, nemo non nulla obcaecati quos, ullam!
+            Beatae quod repellat voluptatum!</p>
+    </div>
+</div>
+
+<h1 class="display-4 text-center">We offer variety of projects</h1>
+
+<div class="d-flex justify-content-between m-5" style="border-bottom: 2px solid darkgray">
+    <p>All houses</p>
+    <p class="text-muted">Stone houses</p>
+    <p class="text-muted">Frame houses</p>
+</div>
+
+
+<div class="row w-75 mx-auto p-5">
+    {% for house in houses %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card mx-2 p-2">
+                <img src="{{ house.house.image.url }}" class="card-img-top" alt="..." style="height: 200px; width: 290px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ house.house.name }}</h5>
+                    <div class="d-flex justify-content-between">
+                        <p class="card-text">Area:</p>
+                        <p class="card-text">{{ house.house.area }}</p>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <p class="card-text">Price:</p>
+                        <p class="card-text">{{ house.price }}</p>
+                    </div>
+                    <a href="{% url 'edit' house.house.id %}" class="btn btn-dark">Edit</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
